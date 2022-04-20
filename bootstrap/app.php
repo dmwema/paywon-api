@@ -111,4 +111,6 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
 return $app;
