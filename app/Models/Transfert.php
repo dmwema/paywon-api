@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Transfert extends Model
 {
 
+    use SoftDeletes;
+
     protected $fillable = [
         'person_id',
         'user_id',

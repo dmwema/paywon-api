@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
-            $table->string('country');
-            $table->string('province');
-            $table->string('postal_code');
-            $table->string('address');
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->timestamps();
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->foreignId('person_id')->nullable()->constrained();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::table('addresses', function (Blueprint $table) {
+            //
+        });
     }
 };
