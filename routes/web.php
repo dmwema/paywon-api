@@ -2,13 +2,14 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CreditCardController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\TransfertController;
 use App\Http\Controllers\UserController;
-use FastRoute\Route;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,15 @@ $router->post('/user',[UserController::class,'store']);
 $router->get('/user/{id}',[UserController::class,'show']);
 $router->post('/user/update',[UserController::class,'update']);
 $router->delete('/user/{id}',[UserController::class,'destroy']);
+
+$router->get('/', function () use ($router) {
+    echo "<center> Paywon </center>";
+});
+
+Route::group(['prefix' => 'api'], function ($router) {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('user-profile', 'AuthController@me');
+
+});

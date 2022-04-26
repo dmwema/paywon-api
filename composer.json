@@ -6,8 +6,10 @@
     "type": "project",
     "require": {
         "php": "^8.0",
+        "doctrine/dbal": "^3.3",
         "flipbox/lumen-generator": "^9.1",
-        "laravel/lumen-framework": "^9.0"
+        "laravel/lumen-framework": "^9.0",
+        "tymon/jwt-auth": "^1.0@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
