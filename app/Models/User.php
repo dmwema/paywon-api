@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Phone;
 use App\Models\Person;
+use App\Models\Address;
 use App\Models\Transfert;
 use App\Models\CreditCard;
 use Illuminate\Auth\Authenticatable;
@@ -11,11 +13,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable, HasFactory;
+    use Authenticatable, Authorizable, HasFactory, SoftDeletes;
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -43,7 +48,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'lastname','firstname', 'address','phone_number','mail','password'
+        'name',
+        'lastname',
+        'firstname',
+        'mail',
+        'password'
     ];
 
     /**
@@ -65,5 +74,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function transferts(){
         return $this->hasMany(Transfert::class);
+    }
+
+    public function addresses(){
+        return $this->hasMany(Address::class);
+    }
+
+    public function phones(){
+        return $this->hasMany(Phone::class);
     }
 }

@@ -2,25 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Transfert extends Model
+class Address extends Model
 {
-
     use SoftDeletes;
 
     protected $fillable = [
-        'person_id',
+        'country',
+        'province',
+        'postal_code',
+        'address',
         'user_id',
-        'amount_from',
-        'amount_to',
-        'currency_from',
-        'currency_to',
-        'transfert_date',
-        'commision_transact',
+        'person_id'
     ];
 
     public function user(){
